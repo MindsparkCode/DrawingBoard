@@ -27,8 +27,9 @@ public class DrawingPathCacheStore extends Fragment {
     // actual buffer which holds the pixel matrix that we draw on the canvas.
     private Bitmap mBitmap;
 
-    // This canvas object, just provides us with a convenient way to manipulate the bitmap buffer.
-    // It is important to note that, this is NOT the canvas gets drawn on the screen.
+    // This canvas object just provides us with a convenient way to manipulate the bitmap buffer.
+    // It is important to note that, this is NOT the canvas that is being referenced by the
+    // canvas in {@link PaintCanvas}.
     private Canvas mCanvas;
 
     SparseArray<Stroke> mUndoRedoStack = new SparseArray<Stroke>();
@@ -71,22 +72,13 @@ public class DrawingPathCacheStore extends Fragment {
     public void setCanvasSize(int width, int height) {
 
 
-        if (mBitmap == null) { // incorrect, we need to rescale the bitmap
+        if (mBitmap == null) {
             mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
             mCanvas = new Canvas(mBitmap);
         }
-        else {
-            // TODO: Add check for the cache being actually dirty, this is wasteful otherwise.
-            // Rescale the old bitmap to fit the new size
-//            Bitmap oldBitmap = mBitmap;
-//
-//            mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-//            mCanvas = new Canvas(mBitmap);
-//            Matrix matrix = new Matrix();
-//            matrix.setRotate(-90, oldBitmap.getWidth()/2, oldBitmap.getHeight()/2);
-//            mCanvas.drawBitmap(oldBitmap, matrix, null);
-        }
 
+        // Can be better handled by detecting the direction of device rotation and then applying
+        // a rotation on the original bitmap in the opposite direction.
     }
 
     public void commitToCache(Path pathToCommit, Paint currentPaintConfig) {
@@ -99,6 +91,9 @@ public class DrawingPathCacheStore extends Fragment {
     }
 
 
+    /**
+     * Resets the state of the
+     */
     public void resetCache() {
         final int height = mBitmap.getHeight();
         final int width = mBitmap.getWidth();
@@ -112,6 +107,14 @@ public class DrawingPathCacheStore extends Fragment {
         setCanvasSize(width, height);
     }
 
+    /**
+     * Utility to rotate a bitmap, and is essentially a wrapper over
+     * {@link Bitmap#createBitmap(Bitmap, int, int, int, int, Matrix, boolean)}.
+     *
+     * @param source The original bitmap.
+     * @param angle In degrees, see {@link Bitmap#createBitmap(Bitmap, int, int, int, int, Matrix, boolean)}
+     * @return a copy of the source if there were any changes to the bitmap after applying rotation.
+     */
     public static Bitmap rotateBitmap(Bitmap source, float angle)
     {
         Matrix matrix = new Matrix();

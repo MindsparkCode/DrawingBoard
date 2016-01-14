@@ -107,7 +107,7 @@ public class PaintCanvas extends View {
         mPaintConfig.setStrokeWidth(STROKE_WIDTH);
         mPaintConfig.setStyle(Paint.Style.STROKE);
 
-        // smoothen the edges and path joins.
+        // smoothen out the edges and path joins.
         mPaintConfig.setAntiAlias(true);
         mPaintConfig.setStrokeCap(Paint.Cap.ROUND);
         mPaintConfig.setStrokeJoin(Paint.Join.ROUND);
@@ -216,6 +216,9 @@ public class PaintCanvas extends View {
         super.onRestoreInstanceState(restoreStatesFrom);
     }
 
+    /**
+     * Clears any drawing present on this view, including offscreen caches.
+     */
     public void clearCanvas() {
         mDisconnectedPath.reset();
         mCacheManager.resetCache();

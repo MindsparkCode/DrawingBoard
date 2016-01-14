@@ -29,9 +29,7 @@ public class DrawingBoardActivity extends AppCompatActivity implements ColorPick
 
     public static final String LOG_TAG = DrawingBoardActivity.class.getSimpleName();
 
-    //TODO: If we don't want to store any data, could we just do with a bitmask instead?
     private Bundle mScreenStates;
-
     private PaintCanvasFragment mCanvasFragment;
     private static final String KEY_SAVE_DIALOG = "key_save_dialog";
     private static final String KEY_SCREEN_STATES = "key_screen_states";
@@ -63,7 +61,6 @@ public class DrawingBoardActivity extends AppCompatActivity implements ColorPick
             }
         });
 
-        // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
     }
 
 
@@ -179,7 +176,7 @@ public class DrawingBoardActivity extends AppCompatActivity implements ColorPick
                         mScreenStates.putBoolean(KEY_SAVE_DIALOG, false);
                     }
                 })
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(R.drawable.ic_save_black_24dp)
                 .show();
         mScreenStates.putBoolean(KEY_SAVE_DIALOG, true);
     }
