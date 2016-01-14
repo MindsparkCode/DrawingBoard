@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_margin="@dimen/activity_horizontal_margin">
+
+    <View
+            android:id="@+id/colorSwatch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/color_swatch_height"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            />
+    <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/redSeekBar"
+            android:max="255"/>
+    <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/greenSeekBar"
+            android:max="255"/>
+    <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/blueSeekBar" android:max="255"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:padding="@dimen/activity_vertical_margin">
+
+        <Button android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/cancel_action"
+                android:text="@string/action_cancel"/>
+        <Button android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/ok_action"
+                android:text="@string/action_ok"/>
+    </LinearLayout>
+</LinearLayout>

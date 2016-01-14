@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Drawing Board</string>
+    <string name="action_settings">Erase</string>
+
+    <string name="action_no">NO</string>
+    <string name="action_ok">Ok</string>
+    <string name="action_cancel">Cancel</string>
+
+    <string name="color_picker_title">Pick a color...</string>
+    <string name="dialog_save_title">Save drawing?</string>
+    <string name="dialog_erase_title">Erase drawing?</string>
+
+    <string name="status_saving">Saving to photo gallery...</string>
+
+    <string name="dialog_save_drawing_msg">Do you want to save this drawing to picture
+        gallery?
+    </string>
+    <string name="dialog_erase_drawing_msg">Do you want to save this drawing before erasing?
+    </string>
+
+    <string name="snackbar_drawing_saved">Saved the drawing to photo gallery.</string>
+</resources>
