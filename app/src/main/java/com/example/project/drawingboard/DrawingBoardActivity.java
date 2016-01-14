@@ -4,6 +4,7 @@ import com.example.project.drawingboard.views.ColorPickerFragment;
 import com.example.project.drawingboard.views.PaintCanvasFragment;
 
 import android.content.DialogInterface;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -61,7 +62,10 @@ public class DrawingBoardActivity extends AppCompatActivity implements ColorPick
                 showColorPicker();
             }
         });
+
+        // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

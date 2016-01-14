@@ -34,6 +34,9 @@ public class DrawingPathCacheStore extends Fragment {
     SparseArray<Stroke> mUndoRedoStack = new SparseArray<Stroke>();
     int mUserActionCount = 0;
 
+    /**
+     * Represents one contour drawn in response to the users action.
+     */
     private class Stroke {
         Path mPath;
         Paint mPaintConfig;
@@ -75,6 +78,13 @@ public class DrawingPathCacheStore extends Fragment {
         else {
             // TODO: Add check for the cache being actually dirty, this is wasteful otherwise.
             // Rescale the old bitmap to fit the new size
+//            Bitmap oldBitmap = mBitmap;
+//
+//            mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+//            mCanvas = new Canvas(mBitmap);
+//            Matrix matrix = new Matrix();
+//            matrix.setRotate(-90, oldBitmap.getWidth()/2, oldBitmap.getHeight()/2);
+//            mCanvas.drawBitmap(oldBitmap, matrix, null);
         }
 
     }
@@ -98,7 +108,7 @@ public class DrawingPathCacheStore extends Fragment {
         mBitmap = null;
         mCanvas = null;
 
-        // initialize a new buffer if the same size.
+        // initialize a new buffer of the same size.
         setCanvasSize(width, height);
     }
 
