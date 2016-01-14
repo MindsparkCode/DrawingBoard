@@ -47,7 +47,8 @@ public class PaintCanvas extends View {
     private boolean mIsDirty = false;
     private float mX, mY;
 
-    // Threshold under which we do not consider translating user events to the canvas.
+    // Threshold (in number of pixels) under which we do not consider translating user events to
+    // the canvas.
     private static final float TOUCH_TOLERANCE = 4;
 
     public PaintCanvas(Context context) {
@@ -70,7 +71,6 @@ public class PaintCanvas extends View {
         mDisconnectedPath = new Path();
         mPaintConfig = new Paint();
         applyDefaultConfigurations();
-        // applyCustomStyledAttributes(context, attrs, defStyleAttr);
 
         // initialize the UndoRedoManager
         // we can safely assume that context here is a Activity, true for any View
@@ -191,6 +191,9 @@ public class PaintCanvas extends View {
         return true;
     }
 
+    /**
+     * @return Returns true if the canvas is dirty (can be saved), false otherwise
+     */
     public boolean canSave() {
         return mIsDirty;
     }
